@@ -2,7 +2,7 @@ import { BsGripVertical } from "react-icons/bs";
 import AssignmentsControls from "./AssignmentsControls";
 import { HiOutlinePencilAlt } from "react-icons/hi";
 import AssignmentControlButtons from "./AssignmentControlButtons";
-import { Link, useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import * as db from "../../Database";
 import ControlButtons from "./ControlButtons";
 

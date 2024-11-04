@@ -9,7 +9,7 @@ import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
 
-export default function Courses() {
+export default function Courses({ courses }: { courses: any[] }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
@@ -34,7 +34,7 @@ export default function Courses() {
             <Route path="Zoom" element={<h3>ZOOM</h3>} />
             <Route path="Assignments" element={<Assignments />} />
             <Route path="Assignments/:aid" element={<AssignmentEditor />} />
-            <Route path="Quizzes" element={<h3>Quizzes</h3>} />
+            <Route path="Quizzes" element={<h3>Quizes</h3>} />
             <Route path="Grades" element={<h3>Grades</h3>} />
             <Route path="People" element={<PeopleTable />} />
           </Routes>
