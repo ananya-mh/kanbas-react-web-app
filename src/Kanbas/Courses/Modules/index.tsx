@@ -10,13 +10,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Modules() {
   const { cid } = useParams();
-  // const [modules, setModules] = useState<any[]>(db.modules);
   const [moduleName, setModuleName] = useState("");
   const { modules } = useSelector((state: any) => state.modulesReducer);
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
   const dispatch = useDispatch();
+
+  const disabled = currentUser.role !== "FACULTY";
 
   return (
     <div>
+      {/* What should be disabled ?? */}
+
       <ModulesControls
         setModuleName={setModuleName}
         moduleName={moduleName}
@@ -25,6 +29,7 @@ export default function Modules() {
           setModuleName("");
         }}
       />
+
       <br />
       <br />
       <br />
@@ -62,7 +67,7 @@ export default function Modules() {
                 <ul className="wd-lessons list-group rounded-0">
                   {module.lessons.map((lesson: any) => (
                     <li className="wd-lesson list-group-item p-3 ps-1">
-                      <BsGripVertical className="me-2 fs-3" /> {lesson.name}{" "}
+                      <BsGripVertical className="me-2 fs-3" /> {lesson.name}
                       <LessonControlButtons />
                     </li>
                   ))}
