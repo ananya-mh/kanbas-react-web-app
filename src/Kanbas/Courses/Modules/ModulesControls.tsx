@@ -1,5 +1,5 @@
 import { FaPlus } from "react-icons/fa6";
-import GreenCheckmark from "./GreenCheckmark";
+import GreenCheckmark from "./CheckMark";
 import ModuleEditor from "./ModuleEditor";
 import { useSelector } from "react-redux";
 
@@ -12,12 +12,9 @@ export default function ModulesControls({
   setModuleName: (title: string) => void;
   addModule: () => void;
 }) {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+  const disabled = currentUser.role !== "FACULTY";
 
-
-   const { currentUser } = useSelector((state: any) => state.accountReducer);
-   const disabled = currentUser.role !== "FACULTY";
-
-   
   return (
     <div id="wd-modules-controls" className="text-nowrap">
       {!disabled && (
