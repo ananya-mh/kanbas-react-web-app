@@ -60,8 +60,8 @@ export default function TOC() {
           </a>
         </li>
         <li className="nav-item">
-          <a id="wd-k" href="https://github.com/ritish1082" className="nav-link">
-            My GitHub
+          <a id="wd-k" href="https://github.com/ananya-mh" className="nav-link">
+            GitHub
           </a>
         </li>
       </ul>
