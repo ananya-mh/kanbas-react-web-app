@@ -85,14 +85,14 @@ export const signout = async () => {
 
 
 //ENROLL/UNENROLL FROM AND INTO COURSE  
-export const enrollUserInCourse = async (userId, courseId) => {
+export const enrollIntoCourse = async (userId, courseId) => {
   const response = await axiosWithCredentials.post(
     `${USERS_API}/${userId}/courses/${courseId}`
   );
   return response.data;
 };
 
-export const unenrollUserFromCourse = async (userId, courseId) => {
+export const unenrollFromCourse = async (userId, courseId) => {
   const response = await axiosWithCredentials.delete(
     `${USERS_API}/${userId}/courses/${courseId}`
   );

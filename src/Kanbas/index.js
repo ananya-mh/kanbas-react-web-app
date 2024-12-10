@@ -50,8 +50,11 @@ export default function Kanbas() {
       const enrolledCourses = await userClient.findCoursesForUser(
         currentUser._id
       );
+console.log("Enrolled courses", enrolledCourses)
+console.log("ALL courses", allCourses)
+
       const courses = allCourses.map((course) => {
-        if (enrolledCourses.find((c) => c._id === course._id)) {
+        if (enrolledCourses.find((c) =>   c && course && c._id === course._id)) {
           return { ...course, enrolled: true };
         } else {
           return course;
@@ -75,11 +78,11 @@ export default function Kanbas() {
   const addNewCourse = async () => {
     const newCourse = await courseClient.createCourse(course);
     setCourses([...courses, newCourse]);
-    await userClient.enrollUserInCourse(currentUser._id, newCourse._id);
+    await userClient.enrollIntoCourse(currentUser._id, newCourse._id);
   };
   const deleteCourse = async (courseId) => {
     const status = await courseClient.deleteCourse(courseId);
-    setCourses(courses.filter((course) => course._id !== courseId));
+    setCourses(courses.filter((course) =>  course && course._id !== courseId));
   };
   const updateCourse = async () => {
     await courseClient.updateCourse(course);
@@ -97,9 +100,9 @@ export default function Kanbas() {
 
   const updateEnrollment = async (courseId, enrolled) => {
     if (enrolled) {
-      await userClient.enrollUserInCourse(currentUser._id, courseId);
+      await userClient.enrollIntoCourse(currentUser._id, courseId);
     } else {
-      await userClient.unenrollUserFromCourse(currentUser._id, courseId);
+      await userClient.unenrollFromCourse(currentUser._id, courseId);
     }
     setCourses(
       courses.map((course) => {
@@ -149,9 +152,9 @@ export default function Kanbas() {
             <Route
               path="/Courses/:cid/*"
               element={
-                <ProtectedRoute courses={courses}>
+                // <ProtectedRoute courses={courses}>
                   <Courses courses={courses} />
-                </ProtectedRoute>
+                // </ProtectedRoute>
               }
             />
             <Route path="/Calendar" element={<h1>Calendar</h1>} />
